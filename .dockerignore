@@ -1,0 +1,7 @@
+*.zip
+*.tar.gz
+*.log
+*.sql
+node_modules
+.env
+.git
