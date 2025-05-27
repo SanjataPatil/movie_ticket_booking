@@ -1,17 +1,14 @@
-# Use official PHP with Apache
+# Use the official PHP-Apache image
 FROM php:8.1-apache
 
-# Enable Apache rewrite module
+# Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
 # Install PHP extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Copy your PHP app into the container
-COPY movie_booking /var/www/html/
+# Copy all project files to the container's web root
+COPY . /var/www/html/
 
-# Set proper permissions
+# Set correct permissions
 RUN chown -R www-data:www-data /var/www/html
-
-# Expose port 80 (Apache default)
-EXPOSE 80
