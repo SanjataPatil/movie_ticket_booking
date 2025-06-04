@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: ''
+                git branch: 'main', url: 'https://github.com/SanjataPatil/movie_ticket_booking.git'
             }
         }
 
@@ -21,7 +21,7 @@ pipeline {
                         ssh -i \$KEY -o StrictHostKeyChecking=no ${DOCKER_USER}@${DOCKER_HOST_IP} \\
                             "rm -rf ${DOCKER_APP_DIR} && mkdir -p ${DOCKER_APP_DIR}"
 
-                        scp -i \$KEY -o StrictHostKeyChecking=no -r src public Selenium.cjs Dockerfile package.json package-lock.json index.html \\
+                        scp -i \$KEY -o StrictHostKeyChecking=no -r src public  Dockerfile package.json package-lock.json index.html \\
                             bun.lockb components.json eslint.config.js postcss.config.js tailwind.config.ts tsconfig.app.json tsconfig.json tsconfig.node.json vite.config.ts \\
                             ${DOCKER_USER}@${DOCKER_HOST_IP}:${DOCKER_APP_DIR}/
                     """
